@@ -114,20 +114,3 @@ function Ratings() {
 }
 
 export default Ratings
-
-// dispplay reviews :
-// <div className="col-span-2">
-//   <h2 className="text-xl font-semibold text-gray-900">Hasil Ulasan</h2>
-//   {reviews.map((rev, index) => (
-//     <div key={index} className="p-4 mt-4 border rounded-lg bg-gray-50">
-//       <p className="text-lg font-medium text-gray-800">
-//         Nama: {rev.name}
-//       </p>
-//       <div className="flex items-center mt-2">
-//         <p className="text-lg font-medium text-gray-800 mr-2">Rating:</p>
-//         <Rating style={{ maxWidth: 100 }} value={rev.rating} readOnly />
-//       </div>
-//       <p className="mt-2 text-gray-700">Komentar: {rev.review}</p>
-//     </div>
-//   ))}
-// </div>

@@ -24,13 +24,6 @@ axiosClient.interceptors.response.use((response) => {
 
 // h
 
-const getCategory = () => {
-  return axiosClient.get("categories?populate=*")
-}
-// Category
-// doctorlist
-const getDoctorList = () => axiosClient.get("/doctors?populate=*")
-// doctorlist by category
 const getDoctorByCategory = (category) =>
   axiosClient.get(
     `/doctors?filters[categories][Name][$in]=${category}&populate=*`
@@ -38,13 +31,21 @@ const getDoctorByCategory = (category) =>
 
 // service list :
 const getServiceList = () => axiosClient.get("/services?populate=*")
+// one service list :
+const getServiceById = (id) =>
+  axiosClient.get("/services/" + id + "?populate=*")
+
 // Contact list
 const getContactList = () => axiosClient.get("/contacts?populate=*")
+
+// post komentar :
+const postReviews = () => axiosClient.post("/comentars")
 
 export default {
   // getCategory,
   // getDoctorList,
   // getDoctorByCategory,
   getServiceList,
+  getServiceById,
   getContactList,
 }

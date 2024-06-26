@@ -13,9 +13,8 @@ function Contacts() {
 
   const getContactList = async () => {
     try {
-      console.log("Fetching data Contact ... ")
       const resp = await GlobalApi.getContactList()
-      console.log("Service Data:", resp.data.data)
+
       setContactList(resp.data.data)
     } catch (e) {
       console.log("erorrnya ", e)
