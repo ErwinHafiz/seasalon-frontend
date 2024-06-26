@@ -38,8 +38,11 @@ const getServiceById = (id) =>
 // Contact list
 const getContactList = () => axiosClient.get("/contacts?populate=*")
 
+// get komentar :
+const getReviews = () => axiosClient.get("/comentars?populate=*")
+
 // post komentar :
-const postReviews = () => axiosClient.post("/comentars")
+const postReviews = (data) => axiosClient.post("/comentars", data)
 
 export default {
   // getCategory,
@@ -48,4 +51,6 @@ export default {
   getServiceList,
   getServiceById,
   getContactList,
+  postReviews,
+  getReviews,
 }

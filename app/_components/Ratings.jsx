@@ -1,17 +1,38 @@
 "use client"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Rating } from "@smastrom/react-rating"
 import { Button } from "@/components/ui/button"
 import "@smastrom/react-rating/style.css"
+import GlobalApi from "../_utils/GlobalApi"
 
 function Ratings() {
   const [state, setState] = useState({
     name: "",
     review: "",
-    rating: 3, // Initial value
+    rating: 3,
   })
 
   const [reviews, setReviews] = useState([])
+
+  useEffect(() => {
+    getReviewList()
+  }, [])
+
+  const getReviewList = () => {
+    GlobalApi.getReviews()
+      .then((resp) => {
+        const reviewData = resp.data.data.map((item) => ({
+          id: item.id,
+          name: item.attributes.name,
+          rating: item.attributes.stars,
+          review: item.attributes.text,
+        }))
+        setReviews(reviewData)
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error)
+      })
+  }
 
   function handleRatingChange(selectedValue) {
     setState((prevState) => ({
@@ -28,25 +49,48 @@ function Ratings() {
     }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     const newReview = {
       name: state.name,
       review: state.review,
       rating: state.rating,
     }
-    setReviews([...reviews, newReview])
-    setState({
-      name: "",
-      review: "",
-      rating: 3,
-    })
+
+    const data = {
+      data: {
+        name: newReview.name,
+        stars: newReview.rating,
+        text: newReview.review,
+      },
+    }
+
+    try {
+      const resp = await GlobalApi.postReviews(data)
+      if (resp) {
+        console.log("Post data response: ", resp)
+        const createdReview = {
+          id: resp.data.data.id,
+          name: resp.data.data.attributes.name,
+          rating: resp.data.data.attributes.stars,
+          review: resp.data.data.attributes.text,
+        }
+        setReviews((prevReviews) => [...prevReviews, createdReview])
+        setState({
+          name: "",
+          review: "",
+          rating: 3,
+        })
+      }
+    } catch (error) {
+      console.error("Error posting review:", error)
+    }
   }
 
   return (
     <div className="bg-white p-4">
       <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Rate Us</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Rate Us</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -91,23 +135,23 @@ function Ratings() {
             </Button>
           </div>
         </form>
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-gray-900">Hasil Ulasan</h2>
-          {reviews.map((rev, index) => (
-            <div key={index} className="p-4 mt-4 border rounded-lg bg-gray-50">
-              <p className="text-lg font-medium text-gray-800">
-                Nama: {rev.name}
-              </p>
-              <div className="flex items-center mt-2">
-                <p className="text-lg font-medium text-gray-800 mr-2">
-                  Rating:
-                </p>
-                <Rating style={{ maxWidth: 100 }} value={rev.rating} readOnly />
-              </div>
-              <p className="mt-2 text-gray-700">Komentar: {rev.review}</p>
+      </div>
+      <div className="mt-8 grid grid-cols-1 align-baseline">
+        {reviews.map((rev, index) => (
+          <div
+            key={index}
+            className="p-4 mt-4 border rounded-lg bg-gray-50 gap-4 mr-2 object-cover"
+          >
+            <p className="text-lg font-medium text-gray-800">
+              Nama: {rev.name}
+            </p>
+            <div className="flex items-center mt-2">
+              <p className="text-lg font-medium text-gray-800 mr-2">Rating:</p>
+              <Rating style={{ maxWidth: 100 }} value={rev.rating} readOnly />
             </div>
-          ))}
-        </div>
+            <p className="mt-2 text-gray-700">Komentar: {rev.review}</p>
+          </div>
+        ))}
       </div>
     </div>
   )
