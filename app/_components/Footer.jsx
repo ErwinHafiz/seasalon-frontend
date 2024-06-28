@@ -16,9 +16,6 @@ function Footer() {
             />
           </div>
 
-          <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-primary">
-            Beauty and elegance redefinied
-          </p>
           <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-slate-500">
             Beauty and elegance redefinied
           </p>

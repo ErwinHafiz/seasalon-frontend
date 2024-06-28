@@ -17,10 +17,11 @@ import {
 } from "@/components/ui/popover"
 
 function Header() {
-  const { user } = useKindeBrowserClient()
+  const { user, permissions } = useKindeBrowserClient()
 
   useEffect(() => {
     console.log("user", user)
+    console.log("permision", permissions)
 
     // console.log("permision", getPermission)
   }, [user])
@@ -71,10 +72,10 @@ function Header() {
       {user ? (
         <Popover>
           <PopoverTrigger className="">
-            <ul className="flex  border-[1px] border-slate-600 rounded-md border-separate  transition-all ease-in-out gap-2  ">
-              <li className=" cursor-default  ">{"user :"} </li>
-              <li className=" hover:bg-pink-600 hover:text-slate-900  border-slate-800  hover:border-[2px] ">
-                {user.given_name}
+            <ul className="flex  border-[1px] rounded-md border-separate  transition-all ease-in-out gap-2  hover:bg-pink-600 hover:text-slate-900  border-slate-800  hover:border-[2px]  ">
+              <li className="">{user.given_name} </li>
+              <li className="font-light text-slate-800 cursor-default ">
+                as {permissions.permissions[0]}{" "}
               </li>
             </ul>
           </PopoverTrigger>

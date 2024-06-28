@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 
-function ServiceSugestion() {
+function ServiceSugestion({ service }) {
   const [serviceList, setServiceList] = useState([])
 
   useEffect(() => {
@@ -39,7 +39,8 @@ function ServiceSugestion() {
                 <h2 className="flex gap-2 p-2 text-slate-800 text-md">
                   <Clock className="w-[20px] h-[20px] " />
                   <span className="text-[10px]">
-                    {service.attributes.duration}
+                    {service.attributes.duration}{" "}
+                    <span className="text-slate-400">minutes</span>
                   </span>
                 </h2>
               </div>

@@ -1,6 +1,34 @@
+"use client"
 import { Button } from "@/components/ui/button"
-import React from "react"
-function Welcome() {
+import React, { useState, useEffect } from "react"
+import FormAllReservation from "./FormAllReservation"
+import Link from "next/link"
+import GlobalApi from "../_utils/GlobalApi"
+
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+function Welcome({ service }) {
+  const [serviceList, setServiceList] = useState([])
+  const { user } = useKindeBrowserClient()
+
+  useEffect(() => {
+    console.log("uswwer", user)
+
+    // console.log("permision", getPermission)
+  }, [user])
+
+  useEffect(() => {
+    getServiceList()
+  }, [])
+
+  const getServiceList = async () => {
+    try {
+      const resp = await GlobalApi.getServiceList()
+      setServiceList(resp.data.data)
+    } catch (e) {
+      console.log("error: ", e)
+    }
+  }
+
   return (
     <div className="bg-gradient-to-l from-rose-300 to-slate-100 w-screen max-h-full">
       <section>
@@ -18,19 +46,34 @@ function Welcome() {
 
             <div className="lg:py-24 ">
               <h1 className="text-3xl font-semibold sm:text-5xl ">
-                Welcome to our sea salon website 👋{" "}
+                Welcome to our sea salon website 👋
               </h1>
               <h2 className="text-primary text-3xl  mt-2 font-fontGreat">
-                Beauty and elegance redefinied{" "}
+                Beauty and elegance redefined{" "}
               </h2>
               <p className="mt-5 text-gray-600 ">
-                we always raise your beauty and elegance back to shine
+                We always raise your beauty and elegance back to shine
               </p>
-              <div className="grid grid-cols-2">
-                <div></div>
-                <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
-                  Explore Now
-                </Button>
+              <div className=" mx-auto flex-col sm-grid-cols-1 grid-cols-2 w-full center ">
+                <div>
+                  {user ? (
+                    <FormAllReservation />
+                  ) : (
+                    <LoginLink>
+                      <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
+                        Explore Now
+                      </Button>
+                    </LoginLink>
+                  )}
+                </div>
+
+                {/* <Link href={"/reservation"}>
+                <LoginLink>                  <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
+                    Explore Now
+                  </Button>
+                  </LoginLink>
+
+                </Link> */}
               </div>
             </div>
           </div>

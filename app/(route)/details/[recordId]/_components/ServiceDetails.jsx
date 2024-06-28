@@ -1,9 +1,15 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { Clock } from "lucide-react"
 import Image from "next/image"
 import React from "react"
+import Reservation from "./Reservation"
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+
+import FormAllReservation from "@/app/_components/FormAllReservation"
 
 function ServiceDetails({ service }) {
+  const { user } = useKindeBrowserClient()
   return (
     <>
       <div className="grid grid-col-1 md:grid-cols-3 border-[1px] p-5 mt-5 bg-gradient-to-r from-rose-300 to-slate-50  ">
@@ -19,11 +25,20 @@ function ServiceDetails({ service }) {
         <div className="col-span-2 mt-5 flex flex-col gap-3">
           <h2 className="font-bold text-2xl">{service.attributes?.name}</h2>
           <h2 className="flex gap-2 p-2 text-slate-800 text-md">
-            <Clock /> <span> {service.attributes.duration}</span>
+            <Clock /> <span> {service.attributes.duration}</span>{" "}
+            <span className="text-slate-500">minutes</span>
           </h2>
-          <Button className="mt-3 rounded-full md:w-1/2">
-            Reservation Now
-          </Button>
+
+          {user ? (
+            <FormAllReservation />
+          ) : (
+            <LoginLink>
+              {" "}
+              <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
+                Reservation Now
+              </Button>
+            </LoginLink>
+          )}
         </div>
       </div>
       <div className="p-3 border-[1px] rounded-lg mt-4">

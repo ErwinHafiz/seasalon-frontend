@@ -44,6 +44,21 @@ const getReviews = () => axiosClient.get("/comentars?populate=*")
 // post komentar :
 const postReviews = (data) => axiosClient.post("/comentars", data)
 
+// post reservation :
+const postReservation = (data) => axiosClient.post("/reservations", data)
+
+const getTimebyService = (service) => axiosClient.get("/service-times")
+
+const getReservationsByServiceAndTime = (serviceId, date, time) => {
+  return axiosClient.get("/reservations", {
+    params: {
+      "filters[service][id][$eq]": serviceId,
+      "filters[date][$eq]": date,
+      "filters[time][$eq]": time,
+    },
+  })
+}
+
 export default {
   // getCategory,
   // getDoctorList,
@@ -53,4 +68,6 @@ export default {
   getContactList,
   postReviews,
   getReviews,
+  postReservation,
+  getReservationsByServiceAndTime,
 }

@@ -8,11 +8,13 @@ import Image from "next/image"
 
 function Details({ params }) {
   const [service, setService] = useState()
+  const [services, setServices] = useState()
   const [serviceMore, setServiceMore] = useState([])
 
   useEffect(() => {
     getServiceById()
   }, [])
+
   const getServiceById = () => {
     GlobalApi.getServiceById(params.recordId).then((resp) => {
       setService(resp.data.data)
@@ -27,6 +29,7 @@ function Details({ params }) {
       setServiceMore(respp.data)
     })
   }
+  //
 
   return (
     <div className="p-5 md:px-20">

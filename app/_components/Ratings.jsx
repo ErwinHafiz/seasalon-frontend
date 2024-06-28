@@ -4,6 +4,10 @@ import { Rating } from "@smastrom/react-rating"
 import { Button } from "@/components/ui/button"
 import "@smastrom/react-rating/style.css"
 import GlobalApi from "../_utils/GlobalApi"
+import { toast } from "sonner"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 function Ratings() {
   const [state, setState] = useState({
@@ -68,7 +72,6 @@ function Ratings() {
     try {
       const resp = await GlobalApi.postReviews(data)
       if (resp) {
-        console.log("Post data response: ", resp)
         const createdReview = {
           id: resp.data.data.id,
           name: resp.data.data.attributes.name,
@@ -81,16 +84,41 @@ function Ratings() {
           review: "",
           rating: 3,
         })
+        toast("The review was added successfully")
       }
     } catch (error) {
       console.error("Error posting review:", error)
     }
   }
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
+
   return (
-    <div className="bg-white p-4">
+    <div className="bg-white p-4 mb-10">
       <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold mb-4 text-center">Rate Us</h1>
+        <h1 className="text-2xl font-semibold mb-4 text-center">Rate Us</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -136,22 +164,56 @@ function Ratings() {
           </div>
         </form>
       </div>
-      <div className="mt-8 grid grid-cols-1 align-baseline">
-        {reviews.map((rev, index) => (
-          <div
-            key={index}
-            className="p-4 mt-4 border rounded-lg bg-gray-50 gap-4 mr-2 object-cover"
+      <div className="mt-8">
+        {reviews.length > 3 ? (
+          <Slider
+            {...settings}
+            className="bg-gradient-to-l from-rose-100 to-slate-100 w-screen gap-20 p-10 mb-5"
           >
-            <p className="text-lg font-medium text-gray-800">
-              Nama: {rev.name}
-            </p>
-            <div className="flex items-center mt-2">
-              <p className="text-lg font-medium text-gray-800 mr-2">Rating:</p>
-              <Rating style={{ maxWidth: 100 }} value={rev.rating} readOnly />
+            {reviews.map((rev, index) => (
+              <div
+                key={index}
+                className="p-2  rounded-lg bg-gradient-to-bl from-slate-300 border-[1px] to-gray-300 gap-4 mr-5 object-cover"
+              >
+                <p className="text-lg font-medium text-gray-800">
+                  Nama: {rev.name}
+                </p>
+                <div className="flex items-center mt-2 m">
+                  <p className="text-lg font-medium text-gray-800 mr-2">
+                    Rating:
+                  </p>
+                  <Rating
+                    style={{ maxWidth: 100 }}
+                    value={rev.rating}
+                    readOnly
+                    className="p-2"
+                  />
+                </div>
+                <p className="mt-2 text-gray-800 font-medium">
+                  Komentar: {rev.review}
+                </p>
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          reviews.map((rev, index) => (
+            <div
+              key={index}
+              className="p-4 mt-4 border rounded-lg bg-gray-50 gap-4 mr-2 object-cover"
+            >
+              <p className="text-lg font-medium text-gray-800">
+                Nama: {rev.name}
+              </p>
+              <div className="flex items-center mt-2">
+                <p className="text-lg font-medium text-gray-800 mr-2">
+                  Rating:
+                </p>
+                <Rating style={{ maxWidth: 100 }} value={rev.rating} readOnly />
+              </div>
+              <p className="mt-2 text-gray-700">Komentar: {rev.review}</p>
             </div>
-            <p className="mt-2 text-gray-700">Komentar: {rev.review}</p>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   )
