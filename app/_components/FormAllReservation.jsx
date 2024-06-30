@@ -52,9 +52,12 @@ function FormAllReservation() {
   const isPastDay = (day) => {
     const today = new Date()
     today.setHours(0, 0, 0, 0) // Reset time to start of day
-    return day < today
+    return (
+      day < today &&
+      day.getMonth() === today.getMonth() &&
+      day.getFullYear() === today.getFullYear()
+    )
   }
-
   const handleServiceChange = (serviceId) => {
     const selected = services.find((item) => item.id === serviceId)
     setSelectedService(selected)
@@ -90,7 +93,7 @@ function FormAllReservation() {
       <Toaster />
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50 ">
+          <Button className="mt-3 rounded-full md:w-1/2">
             Reservation Now
           </Button>
         </DialogTrigger>

@@ -10,8 +10,12 @@ export default function Home() {
     <>
       <div>
         <Welcome />
-        <ServiceList />
-        <Contacts />
+        <div id="services">
+          <ServiceList />
+        </div>
+        <div id="contacts">
+          <Contacts />
+        </div>
         <Ratings />
       </div>
     </>

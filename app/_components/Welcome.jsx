@@ -6,6 +6,7 @@ import Link from "next/link"
 import GlobalApi from "../_utils/GlobalApi"
 
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+import FormTes from "./FormTes"
 function Welcome({ service }) {
   const [serviceList, setServiceList] = useState([])
   const { user } = useKindeBrowserClient()
@@ -59,6 +60,9 @@ function Welcome({ service }) {
                   {user ? (
                     <FormAllReservation />
                   ) : (
+                    // <FormTes />
+                    // <FormTes />
+                    // <FormTes />
                     <LoginLink>
                       <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
                         Explore Now
@@ -66,14 +70,6 @@ function Welcome({ service }) {
                     </LoginLink>
                   )}
                 </div>
-
-                {/* <Link href={"/reservation"}>
-                <LoginLink>                  <Button className="flex flex-row mt-2 justify-center bg-transparent items-center border-neutral-900 border-[1px] text-slate-950 hover:text-slate-50 from-neutral-50">
-                    Explore Now
-                  </Button>
-                  </LoginLink>
-
-                </Link> */}
               </div>
             </div>
           </div>

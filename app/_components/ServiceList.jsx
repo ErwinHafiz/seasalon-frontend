@@ -21,7 +21,7 @@ function ServiceList() {
   }
 
   return (
-    <div className=" mt-50 md:mt-5">
+    <div className=" mt-50 md:mt-5 mb-20">
       <div className="justify-center items-center text-center mt-10 m-4 mx-auto">
         <h1 className="font-fontGreat text-4xl">Our Services</h1>
         <p className="mt-3 text-[18px]">

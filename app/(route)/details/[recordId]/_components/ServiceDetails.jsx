@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button"
 import { Clock } from "lucide-react"
 import Image from "next/image"
 import React from "react"
+import { useRouter } from "next/navigation"
 import Reservation from "./Reservation"
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
-
 import FormAllReservation from "@/app/_components/FormAllReservation"
 
 function ServiceDetails({ service }) {
   const { user } = useKindeBrowserClient()
+  const router = useRouter()
+
   return (
     <>
       <div className="grid grid-col-1 md:grid-cols-3 border-[1px] p-5 mt-5 bg-gradient-to-r from-rose-300 to-slate-50  ">
@@ -58,6 +60,9 @@ function ServiceDetails({ service }) {
           finish. Book with us today and discover the difference that expert
           care and a luxurious experience can make!
         </p>
+      </div>
+      <div className="mt-4">
+        <Button onClick={() => router.push("/")}>Go to Home</Button>
       </div>
     </>
   )

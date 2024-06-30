@@ -35,6 +35,13 @@ const getServiceList = () => axiosClient.get("/services?populate=*")
 const getServiceById = (id) =>
   axiosClient.get("/services/" + id + "?populate=*")
 
+// service-times
+
+// Test buat reservasi nu
+
+const getServiceTimes = () => axiosClient.get("/service-times?populate=*")
+// Test buat reservasi end
+
 // Contact list
 const getContactList = () => axiosClient.get("/contacts?populate=*")
 
@@ -46,8 +53,21 @@ const postReviews = (data) => axiosClient.post("/comentars", data)
 
 // post reservation :
 const postReservation = (data) => axiosClient.post("/reservations", data)
+const updateTimeSlotStatus = (timeSlotId, data) => {
+  return axiosClient.put(`/service-times/${timeSlotId}`, data)
+}
 
+// get user reservation
+const getUserReservation = (userId) =>
+  axiosClient.get(
+    "/reservations?[filters][user_id][$eq]=" +
+      userId +
+      "&populate[service][populate][image][populate][0]=url&populate=*"
+  )
 const getTimebyService = (service) => axiosClient.get("/service-times")
+const getReservationsByDate = (date) => {
+  axiosClient.get(`${API_URL}/reservations?date=${date}`)
+}
 
 const getReservationsByServiceAndTime = (serviceId, date, time) => {
   return axiosClient.get("/reservations", {
@@ -70,4 +90,9 @@ export default {
   getReviews,
   postReservation,
   getReservationsByServiceAndTime,
+  getServiceTimes,
+  updateTimeSlotStatus,
+  getUserReservation,
+  getReservationsByDate,
+  //
 }

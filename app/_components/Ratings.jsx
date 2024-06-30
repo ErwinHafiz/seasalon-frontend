@@ -116,7 +116,7 @@ function Ratings() {
   }
 
   return (
-    <div className="bg-white p-4 mb-10">
+    <div className="bg-white  mb-10 mx-auto w-screen mt-5">
       <div className="max-w-lg mx-auto">
         <h1 className="text-2xl font-semibold mb-4 text-center">Rate Us</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -164,16 +164,16 @@ function Ratings() {
           </div>
         </form>
       </div>
-      <div className="mt-8">
+      <div className="mt-8 object-cover">
         {reviews.length > 3 ? (
           <Slider
             {...settings}
-            className="bg-gradient-to-l from-rose-100 to-slate-100 w-screen gap-20 p-10 mb-5"
+            className="bg-gradient-to-l from-rose-100 to-pink-100 w-screen  p-10 mx-auto "
           >
             {reviews.map((rev, index) => (
               <div
                 key={index}
-                className="p-2  rounded-lg bg-gradient-to-bl from-slate-300 border-[1px] to-gray-300 gap-4 mr-5 object-cover"
+                className="p-2  rounded-lg bg-gradient-to-bl from-slate-300 border-[1px] to-gray-300 gap-4  object-cover w-screen"
               >
                 <p className="text-lg font-medium text-gray-800">
                   Nama: {rev.name}

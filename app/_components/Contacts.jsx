@@ -22,9 +22,9 @@ function Contacts() {
   }
 
   return (
-    <div className="bg-gradient-to-r from-rose-300 to-slate-100  w-full ">
-      <div className="grid grid-flow-row sm:grid-cols-1 md:grid-cols-3 justify-center ">
-        <div className="text-center mx-auto justify-center">
+    <div className="bg-gradient-to-r from-rose-300 to-slate-100  w-full h-fit">
+      <div className="grid grid-cols-1 md:grid-cols-3 justify-center ">
+        <div className="text-center mx-auto justify-center ">
           <h1 className="text-5xl m-2 mt-2 ">Contact & details</h1>
           <h2 className="text-sm m-2">
             Feel free to contact us for any inquiries or to book an appointment.
