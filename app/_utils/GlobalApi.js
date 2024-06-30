@@ -6,7 +6,7 @@ if (!API_KEY) {
   console.error("API_KEY is not defined")
 }
 const axiosClient = axios.create({
-  baseURL: "http://localhost:1337/api",
+  baseURL: "https://seasalon-backend.vercel.app/api",
   headers: {
     Authorization: `Bearer ${API_KEY}`,
   },
