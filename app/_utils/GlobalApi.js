@@ -6,7 +6,7 @@ if (!API_KEY) {
   console.error("API_KEY is not defined")
 }
 const axiosClient = axios.create({
-  baseURL: "https://seasalon-backend.vercel.app/api",
+  baseURL: "https://seasalon-backend.onrender.com/api",
   headers: {
     Authorization: `Bearer ${API_KEY}`,
   },
@@ -21,13 +21,6 @@ axiosClient.interceptors.response.use((response) => {
   console.log("Response:", response)
   return response
 })
-
-// h
-
-const getDoctorByCategory = (category) =>
-  axiosClient.get(
-    `/doctors?filters[categories][Name][$in]=${category}&populate=*`
-  )
 
 // service list :
 const getServiceList = () => axiosClient.get("/services?populate=*")
@@ -80,9 +73,6 @@ const getReservationsByServiceAndTime = (serviceId, date, time) => {
 }
 
 export default {
-  // getCategory,
-  // getDoctorList,
-  // getDoctorByCategory,
   getServiceList,
   getServiceById,
   getContactList,
