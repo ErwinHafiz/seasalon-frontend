@@ -6,7 +6,7 @@ SeaSalon is a website built to make it easier for customers to find out about av
 was made as a form of my high enthusiasm in participating in this compfest activity.This website also designed with responsiveness and intuitive design in mind.
 
 ## Acces the demo
-https://seasalon-frontend-3xm4.vercel.app/
+https://seasalon-frontend.vercel.app/
 ### You can use this account as a tester: 
 |     Email                                 | Password           | Role |
 | ----------------------------------------- | ------------------ |------|
