@@ -1,24 +1,55 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Project Description
+### Sea Salon
+SeaSalon is a website built to make it easier for customers to find out about available services and reservation. In addition, this project 
+was made as a form of my high enthusiasm in participating in this compfest activity.This website also designed with responsiveness and intuitive design in mind.
 
-First, run the development server:
+## Acces the demo
+https://seasalon-frontend-3xm4.vercel.app/
+### You can use this account as a tester: 
+|     Email                                 | Password           | Role |
+| ----------------------------------------- | ------------------ |------|
+|  erwinhafizzxr@gmail.com                  | erwin1234          |Admin |
+| erwin.10122269@mahasiswa.unikom.ac.id     | erwin123           |User  |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Or you can use your own valid email**
 
+
+## How to start locally
+1. Clone the project githube on your terminal
+   ```bash
+   https://github.com/ErwinHafiz/seasalon-frontend.git
+   ```
+2. Go to directory
+   ```bash
+   cd seasalon-frontend
+   ```
+3. Install dependency
+   ```bash
+   npm i or npm install
+   ```
+4. Run the scripts
+   ```bash
+   npm run dev
+   ```
+Voila the projects run on your local
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Tech stack 
+  **Client**: Nextjs, TailwindCSS, Shadcn\
+  **Server**: Supabase(postgrees) , Strapi, Javascript
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screenshoot
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/0d55245f-32a8-4cda-b5fd-f116456d60f7)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/172c1f07-0844-4b54-a9cc-1f8c2f4afc74)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/63943568-39db-4762-9f06-29ab1946a6ef)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/87bab1f8-bf6e-470d-bf2d-b3abe6c3f1d4)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/e8de9580-775d-42ea-8104-b3b0d52c3a89)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/96b2e27b-10af-4986-893e-d9436bdcad1b)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/dd9d0dee-a80c-4e09-a209-00ca4a4e75ea)
+![image](https://github.com/ErwinHafiz/seasalon-frontend/assets/101485637/85ebcbf9-042e-4ff8-957c-7a2349ab2972)
+
 
 ## Learn More
 
