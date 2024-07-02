@@ -155,7 +155,7 @@ function FormAllReservation() {
                     disabled={isPastDay}
                     className="rounded-md border shadow-sm mx-auto bg-slate-100"
                   />
-                  <div className="mt-3 className= "text-slate-90" ">
+                  <div className="mt-3 className= "text-slate-90">
                     <h2>Select Time</h2>
                     <div className="grid grid-cols-3 gap-2 border rounded-lg p-3 overflow-y-auto max-h-[200px]">
                       {timeSlot.map((item, i) => (
