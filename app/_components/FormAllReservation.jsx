@@ -51,7 +51,7 @@ function FormAllReservation() {
 
   const isPastDay = (day) => {
     const today = new Date()
-    today.setHours(0, 0, 0, 0) // Reset time to start of day
+    today.setHours(0, 0, 0, 0) 
     return (
       day < today &&
       day.getMonth() === today.getMonth() &&
@@ -102,7 +102,7 @@ function FormAllReservation() {
             <DialogTitle>Pick Your Reservation</DialogTitle>
             <DialogDescription>
               <div className="grid grid-cols-1 md:grid-cols-2 sm:w-full">
-                <div className="justify-start mr-2 md:mt-5 md:justify-center">
+                <div className="justify-start mr-2 md:mt-5 md:justify-center text-slate-90">
                   <tr>
                     <th>Name</th>
                     <td>
@@ -115,7 +115,7 @@ function FormAllReservation() {
                   </tr>
                   <tr>
                     <td>
-                      <label id="phone">Phone Number</label>
+                      <label id="phone" className= "text-slate-90">Phone Number</label>
                     </td>
                     <td>
                       <Input
@@ -126,7 +126,7 @@ function FormAllReservation() {
                     </td>
                   </tr>
                   <tr>
-                    <td>Type of Services</td>
+                    <td className= "text-slate-90">Type of Services</td>
                     <td>
                       <Select
                         className="bg-slate-600"
@@ -146,8 +146,8 @@ function FormAllReservation() {
                     </td>
                   </tr>
                 </div>
-                <div>
-                  <h2>Select Date</h2>
+                <div className= "text-slate-90">
+                  <h2 >Select Date</h2>
                   <Calendar
                     mode="single"
                     selected={date}
@@ -155,7 +155,7 @@ function FormAllReservation() {
                     disabled={isPastDay}
                     className="rounded-md border shadow-sm mx-auto bg-slate-100"
                   />
-                  <div className="mt-3">
+                  <div className="mt-3 className= "text-slate-90" ">
                     <h2>Select Time</h2>
                     <div className="grid grid-cols-3 gap-2 border rounded-lg p-3 overflow-y-auto max-h-[200px]">
                       {timeSlot.map((item, i) => (
